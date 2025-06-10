@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Document</title>
+  </head>
+  <body
+    class="gap-4 flex flex-col justify-center min-h-screen items-center bg-neutral-950"
+  >
+    <header>
+      <h1 class="text-4xl text-white">Todo Yovi App</h1>
+    </header>
+    <main class="ml-14">
+      <div class="space-x-4">
+        <input
+          type="text"
+          class="bg-blue-200 h-8 w-96 focus:outline-none p-2 inputTarea"
+          placeholder="Agregue una Tarea"
+        />
+        <button class="bg-red-400 p-2 rounded-full hover:bg-red-500 addTarea">
+          Agregar
+        </button>
+      </div>
+      <div>
+        <h2 class="text-white">Tareas</h2>
+        <ul class="bg-neutral-800 w-2xl h-80">
+          <li></li>
+        </ul>
+      </div>
+    </main>
+    <script src="./script.js"></script>
+  </body>
+</html>
