@@ -1,12 +1,14 @@
 const inputTarea = document.querySelector(".inputTarea");
 const addTarea = document.querySelector(".addTarea");
 const listaTareas = document.querySelector(".listaTareas");
+let tarea = 0;
 
 function crearTarea() {
   if (inputTarea.value.trim() === "") return;
 
   let valorInput = inputTarea.value.trim();
 
+  const idTarea = tarea; // guarda el valor actual antes de incrementar
   let nuevoLi = document.createElement("li");
   nuevoLi.classList.add(
     "text-white",
@@ -21,6 +23,8 @@ function crearTarea() {
     "flex",
     "justify-between",
   );
+  nuevoLi.setAttribute("id", `tarea-${idTarea}`);
+
   nuevoLi.textContent = valorInput;
   listaTareas.appendChild(nuevoLi);
   // inputTarea.value = ""; // Limpiar el input después de agregar la tarea
@@ -42,13 +46,36 @@ function crearTarea() {
     "text-white",
     "bg-green-500",
     "rounded-lg",
-    "p-2",
+
     "hover:bg-green-600",
   );
   nuevoLi.appendChild(checkButton);
+  checkButton.setAttribute("id", `button-${idTarea}`);
+
+  checkButton.addEventListener("click", () => tareaCompletada(idTarea));
+  tarea++;
 }
 
-function tareaCompletada() {}
+function tareaCompletada(id) {
+  const tareaLi = document.querySelector(`#tarea-${id}`);
+  const tareaButton = document.querySelector(`#button-${id}`);
+
+  Swal.fire({
+    toast: true, // Activa modo notificación
+    position: "top", // O 'top-end' para esquina superior derecha
+    icon: "success",
+    title: "Tarea completada",
+    showConfirmButton: false,
+    timer: 1500,
+    timerProgressBar: true,
+    width: "250px", // Ajustás el tamaño aquí
+  });
+
+  // Eliminar la tarea del DOM
+  if (tareaLi) {
+    tareaLi.remove();
+  }
+}
 
 addTarea.addEventListener("click", crearTarea);
 
